@@ -34,7 +34,7 @@ Funkcionális követelmények
 	* bejelentkezés után a funkciók használata 
 	* ezeket egy előre megadott listából, vagy LDAP - authentikációval kell elvégezni
 
-* Nem funkcionális követelmények
+Nem funkcionális követelmények
 
 * Felhasználóbarát, ergonomikus elrendezés és kinézet. Gyors működés. Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
 
