@@ -1,8 +1,8 @@
 # alkfejl2018
-Projektötlet
+## Projektötlet
 
-FELADAT
-Egy webes alkalmazás elkészítése, amellyel a bejelentkezett felhasználók receptjeiket szakácskönyvekbe szervezhetik. Saját recepteket és szakácskönyveket hozhatnak létre, módosíthatják és törölhetik azokat. Adminisztrátorként minden felhasználót, szakácskönyvet és receptet törölhetünk, a felhasználói fiókokhoz hozzáférhetünk.
+###### FELADAT
+**Egy webes alkalmazás elkészítése, amellyel a bejelentkezett felhasználók receptjeiket szakácskönyvekbe szervezhetik. Saját recepteket és szakácskönyveket hozhatnak létre, módosíthatják és törölhetik azokat. Adminisztrátorként minden felhasználót, szakácskönyvet és receptet törölhetünk, a felhasználói fiókokhoz hozzáférhetünk.**
 
 Funkcionális követelmények
 
