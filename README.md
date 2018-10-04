@@ -6,38 +6,39 @@ Egy webes alkalmazás elkészítése, amellyel a bejelentkezett felhasználók r
 
 Funkcionális követelmények
 
-Felhasználó: 	  - regisztráció
-				        - belépés
-				        - személyes adatok módosítása
-				        - regisztráció törlése
+* Felhasználó: 
+	* regisztráció
+	* belépés
+	* személyes adatok módosítása
+	* regisztráció törlése
 
-				        - recept létrehozása
-				        - a felhasználóhoz tartozó recept törlése
-				        - egy szakácskönyvhöz tartozó receptek lekérése
-				        - recept módosítása
+	* recept létrehozása
+	* a felhasználóhoz tartozó recept törlése
+	* egy szakácskönyvhöz tartozó receptek lekérése
+	* recept módosítása
 				
-				        - szakácskönyv létrehozása
-				        - a felhasználóhoz tartozó szakácskönyv(ek) törlése
-				        - szakácskönyvek lekérése
-				        - szakácskönyv módosítása
+	* szakácskönyv létrehozása
+	* a felhasználóhoz tartozó szakácskönyv(ek) törlése
+	* szakácskönyvek lekérése
+	* szakácskönyv módosítása
 
-Adminisztrátor: - bárki fiókjához hozzáférhet, azok tartalmát törölheti, módosíthatja, új tartalmat adhat hozzá 
-				        - egy vagy az összes felhasználó törlése
-				        - recept törlése szakácskönyvből
-				        - egy felhasználóhoz tartozó szakácskönyv(ek) törlése
+* Adminisztrátor: 
+	* bárki fiókjához hozzáférhet, azok tartalmát törölheti, módosíthatja, új tartalmat adhat hozzá 
+	* egy vagy az összes felhasználó törlése
+	* recept törlése szakácskönyvből
+	* egy felhasználóhoz tartozó szakácskönyv(ek) törlése
 				
-				        - egy vagy az összes felhasználó, szakácskönyv, recept lekérése
+	* egy vagy az összes felhasználó, szakácskönyv, recept lekérése
 				
-Közös: 			    - bejelentkezés után a funkciók használata 
-				        - ezeket egy előre megadott listából, vagy LDAP - authentikációval kell elvégezni
+* Közös: 
+	* bejelentkezés után a funkciók használata 
+	* ezeket egy előre megadott listából, vagy LDAP - authentikációval kell elvégezni
 
-Nem funkcionális követelmények
+* Nem funkcionális követelmények
 
-Felhasználóbarát, ergonomikus elrendezés és kinézet.
-Gyors működés.
-Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
+* Felhasználóbarát, ergonomikus elrendezés és kinézet. Gyors működés. Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
 
-Szerepkörök
+* Szerepkörök
 
-felhasználó: a saját maga által létrehozott fiók, receptek és szakácskönyvek módosítása és törlése
-adminisztrátor: felhasználók, szakácskönyvek és receptek törlése, felhasználói fiókokhoz való teljes hozzáférés
+	* felhasználó: a saját maga által létrehozott fiók, receptek és szakácskönyvek módosítása és törlése
+	* adminisztrátor: felhasználók, szakácskönyvek és receptek törlése, felhasználói fiókokhoz való teljes hozzáférés
