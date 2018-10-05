@@ -1,0 +1,19 @@
+2018-10-02 11:37:56,804 [Worker-3: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-10-02 11:39:58,947 [Worker-3: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: group:artifact:0.0.1-SNAPSHOT @ C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\pom.xml.
+2018-10-02 11:39:59,413 [Worker-6: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: group:artifact:0.0.1-SNAPSHOT @ C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\pom.xml.
+2018-10-02 11:40:06,965 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-10-02 11:40:06,973 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\main\resources
+2018-10-02 11:40:06,973 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\main\resources
+2018-10-02 11:40:06,983 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-10-02 11:40:06,983 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\test\resources
+2018-10-02 11:40:14,640 [Worker-13: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: group:artifact:0.0.1-SNAPSHOT @ C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\pom.xml.
+2018-10-02 11:40:15,680 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-10-02 11:40:15,680 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\main\resources
+2018-10-02 11:40:15,680 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\main\resources
+2018-10-02 11:40:15,700 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-10-02 11:40:15,700 [Worker-1: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\test\resources
+2018-10-02 11:40:20,113 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-10-02 11:40:20,113 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\main\resources
+2018-10-02 11:40:20,133 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\main\resources
+2018-10-02 11:40:20,141 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-10-02 11:40:20,141 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\G50-45\Documents\Egyetem_2018_19\alk_fejl\bead_1\artifact\src\test\resources
