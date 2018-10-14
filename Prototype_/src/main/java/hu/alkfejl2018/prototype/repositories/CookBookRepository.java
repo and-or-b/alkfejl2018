@@ -20,18 +20,16 @@ public interface CookBookRepository extends CrudRepository<CookBook, Integer> {
 	@Query("select cookBook FROM CookBook cookBook where cookBook.id = :cookBookId and cookBook.user.id = :userId")
 	Optional<CookBook> findByUserIdAndCookBookId(Integer userId, Integer cookBookId);
 
-	@Query("select cookBook.recipes FROM CookBook cookBook where cookBook.id = :cookBookId and "
-			+ "cookBook.user.id = :userId")
-	 Iterable<Recipe> findAllRecipes(Integer userId, Integer cookBookId);
+	@Query("select cookBook.recipes FROM CookBook cookBook where cookBook.id = :cookBookId and cookBook.user.id = :userId")
+	Iterable<Recipe> findAllRecipesFromCookBook(Integer userId, Integer cookBookId);
 
 	@Transactional
 	@Modifying
 	@Query("delete FROM CookBook cookBook where cookBook.user.id = :userId")
-	void deleteCookBooksOfUser(Integer userId);
+	void deleteUserCookBooks(Integer userId);
 
 	@Transactional
 	@Modifying
 	@Query("delete FROM CookBook cookBook where cookBook.id = :cookBookId and cookBook.user.id = :userId")
-	void deleteACookBook(Integer userId, Integer cookBookId);
-
+	void deleteUserCookBook(Integer userId, Integer cookBookId);
 }

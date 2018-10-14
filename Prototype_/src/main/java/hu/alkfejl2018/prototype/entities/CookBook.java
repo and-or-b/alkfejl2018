@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class CookBook extends BaseEntity implements Serializable {
 	
-	@Column(unique = true)
+	@Column
 	@NotNull
 	private String title;
 	
