@@ -38,3 +38,5 @@ Nem funkcionális követelmények
 
 	* felhasználó: a saját maga által létrehozott fiók, receptek és szakácskönyvek módosítása és törlése
 	* adminisztrátor: felhasználók, szakácskönyvek és receptek törlése, felhasználói fiókokhoz való teljes hozzáférés
+
+## Backend megvalósítása
