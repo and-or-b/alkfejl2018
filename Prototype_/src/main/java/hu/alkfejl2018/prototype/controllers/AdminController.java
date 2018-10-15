@@ -59,7 +59,6 @@ public class AdminController {
 		 
 		 Iterable<User> users = userRepository.findAll();
 		 Iterator<User> userIterator = users.iterator();
-		 
 		 while(userIterator.hasNext()) {
 			 User user = userIterator.next();
 			 if (!user.getRole().equals(User.Role.ROLE_ADMIN)) {
@@ -109,8 +108,7 @@ public class AdminController {
 				if (recipeRepository.findById(recipe.getId()).get().getCookBooks().size() == 0) {
 					recipeRepository.deleteById(recipe.getId());
 				}
-			}
-			cookBookRepository.deleteUserCookBook(userId, cookBookId);	
+			}	
 		}
 	}
 }
