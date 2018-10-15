@@ -27,31 +27,30 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode
 public class User extends BaseEntity implements Serializable {
 
-	  @Column
-	  @NotNull
-	  private String name;
+	@Column
+	@NotNull
+	private String name;
+	
+	@Column(unique = true)
+	@NotNull
+	private String email;
 	  
-	  @NotNull
-	  @Column
-	  private String password;
+	@NotNull
+	@Column
+	private String password;
 
-	  @Column(unique = true)
-	  @NotNull
-	  private String email;
+	@Column
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	 
-	  @Column
-	  @Enumerated(EnumType.STRING)
-	  private Role role;
-	 
-	 @JsonIgnore
-	 @OneToMany(mappedBy = "user")
-	 private List<CookBook> cookBooks = new ArrayList<>();
-	 
-	    
-	 public enum Role {
-		 ROLE_ADMIN,
-		 ROLE_USER
-	 }
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<CookBook> cookBooks = new ArrayList<>();
+	
+	public enum Role {
+		ROLE_ADMIN,
+		ROLE_USER
+	}
 }
 
 

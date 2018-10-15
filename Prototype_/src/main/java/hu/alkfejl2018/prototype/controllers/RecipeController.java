@@ -22,6 +22,7 @@ import hu.alkfejl2018.prototype.entities.CookBook;
 import hu.alkfejl2018.prototype.entities.Recipe;
 import hu.alkfejl2018.prototype.repositories.CookBookRepository;
 import hu.alkfejl2018.prototype.repositories.RecipeRepository;
+import hu.alkfejl2018.prototype.security.AuthenticatedUser;
 
 @RestController
 @Secured({ "ROLE_USER" })
@@ -29,14 +30,21 @@ import hu.alkfejl2018.prototype.repositories.RecipeRepository;
 public class RecipeController {	
 	
 	@Autowired
-	private RecipeRepository recipeRepository;
-	 
-	@Autowired
 	private CookBookRepository cookBookRepository;
+	
+	@Autowired
+	private RecipeRepository recipeRepository;
+	
+	@Autowired 
+	 private AuthenticatedUser authenticatedUser;
 	 
 	@GetMapping("")
 	public ResponseEntity<Iterable<Recipe>> getUserRecipesFromACookBook(@PathVariable("user_id") Integer userId,
 			@PathVariable("cook_book_id") Integer cookBookId) {
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		}
 		
 		Optional<CookBook> cookBook = cookBookRepository.findByUserIdAndCookBookId(userId, cookBookId);
 		if (cookBook.isPresent()) {
@@ -48,7 +56,11 @@ public class RecipeController {
 	@PostMapping("")
 	public ResponseEntity<Recipe> newRecipe(@PathVariable("user_id") Integer userId, 
 			@PathVariable("cook_book_id") Integer cookBookId, @RequestBody Recipe recipe) {
-		 
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
+		
 		Optional<CookBook> cookBook = cookBookRepository.findByUserIdAndCookBookId(userId, cookBookId);
 		if (cookBook.isPresent()) {
 
@@ -67,7 +79,11 @@ public class RecipeController {
 	@Modifying
 	@DeleteMapping("")
 	public ResponseEntity<Recipe> deleteRecipes(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") int cookBookId) {
-		 
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
+		
 		Optional<CookBook> cookBook = cookBookRepository.findByUserIdAndCookBookId(userId, cookBookId);
 		if (cookBook.isPresent()) {
 			
@@ -87,7 +103,11 @@ public class RecipeController {
 	@DeleteMapping("/{recipe_id}")
 	public ResponseEntity<Recipe> deleteRecipe(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") Integer cookBookId, 
 			@PathVariable("recipe_id") Integer recipeId) {
-		 
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
+		
 		Optional<CookBook> cookBook = cookBookRepository.findByUserIdAndCookBookId(userId, cookBookId);
 		Optional<Recipe> recipe = recipeRepository.findById(recipeId);
 		if (cookBook.isPresent() && recipe.isPresent()) {
@@ -104,8 +124,13 @@ public class RecipeController {
 	}
 	 
 	@PutMapping("/{recipe_id}")
-	public ResponseEntity<Recipe> modifyRecipe(@PathVariable("recipe_id") Integer recipeId, @RequestBody Recipe recipe) {
-			
+	public ResponseEntity<Recipe> modifyRecipe(@PathVariable("user_id") Integer userId, @PathVariable("recipe_id") Integer recipeId, 
+			@RequestBody Recipe recipe) {
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
+		
 		Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
 		if (optionalRecipe.isPresent()) {
 			recipe.setId(recipeId);
@@ -118,7 +143,11 @@ public class RecipeController {
 	@PostMapping("/{recipe_id}/addToAnotherCookBook/{other_cook_book_id}")
 	public ResponseEntity<Recipe> addToAnotherCookBook(@PathVariable("user_id") Integer userId, @PathVariable("recipe_id") Integer recipeId, 
 			@PathVariable("other_cook_book_id") Integer otherCookBookId) {
-			
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
+		
 		Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
 		Optional<CookBook> optionalCookBook = cookBookRepository.findByUserIdAndCookBookId(userId, otherCookBookId);
 		if (optionalRecipe.isPresent() && optionalCookBook.isPresent()) {

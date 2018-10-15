@@ -23,6 +23,7 @@ import hu.alkfejl2018.prototype.entities.User;
 import hu.alkfejl2018.prototype.repositories.CookBookRepository;
 import hu.alkfejl2018.prototype.repositories.RecipeRepository;
 import hu.alkfejl2018.prototype.repositories.UserRepository;
+import hu.alkfejl2018.prototype.security.AuthenticatedUser;
 
 @RestController
 @Secured({ "ROLE_USER" })
@@ -37,14 +38,25 @@ public class CookBookController {
 	 
 	 @Autowired
 	 private RecipeRepository recipeRepository;
+	 
+	 @Autowired 
+	 private AuthenticatedUser authenticatedUser;
 
 	 @GetMapping("")
 	 public ResponseEntity<Iterable<CookBook>> getUserCookBooks(@PathVariable("user_id") Integer userId) {
+		 
+		 if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
 		 return new ResponseEntity<Iterable<CookBook>>(cookBookRepository.findByUserId(userId), HttpStatus.OK);
 	 }
 
 	 @PostMapping("")
 	 public ResponseEntity<CookBook> newCookBook(@PathVariable("user_id") Integer userId, @RequestBody CookBook cookBook) {
+		 
+		 if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
 		 
 		 Optional<User> user = userRepository.findById(userId);
 		 if (user.isPresent()) {
@@ -61,6 +73,10 @@ public class CookBookController {
 	public ResponseEntity<CookBook> renameCookBook(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") Integer cookBookId, 
 			@RequestBody CookBook cookBook) {
 		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		}
+		
 		Optional<CookBook> optionalCookBook = cookBookRepository.findByUserIdAndCookBookId(userId, cookBookId);
 		if (optionalCookBook.isPresent() && cookBook.getTitle() != null && cookBook.getTitle() != "") {
 			
@@ -73,6 +89,10 @@ public class CookBookController {
 
 	@DeleteMapping("/{cook_book_id}")
 	public ResponseEntity<CookBook> deleteCookBook(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") Integer cookBookId) {
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		}
 		
 		Optional<CookBook> optionalCookBook = cookBookRepository.findByUserIdAndCookBookId(userId, cookBookId);
 		if (optionalCookBook.isPresent()) {
@@ -101,7 +121,11 @@ public class CookBookController {
 
 	@DeleteMapping("")
 	public ResponseEntity<CookBook> deleteCookBooks(@PathVariable("user_id") Integer userId) {
-		 
+		
+		if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		}
+		
 		Optional<User> user = userRepository.findById(userId);
 		if (user.isPresent()) {
 			

@@ -1,4 +1,4 @@
-INSERT INTO USERS(id, name, password, email, role) VALUES(1, 'A', '$2a$04$Ne29GbijkqkXujftzHR4A.D.bUST7deL..sGWj2wu1eaCnYrswxzm', 'example1.com', 'ROLE_ADMIN');
+INSERT INTO USERS(id, name, password, email, role) VALUES(1, 'A', '$2a$04$pHM5ieJ/LXEV0zXg6IPeze9OQC.yGenCYuoQ6huqkoJaiki0eyabS', 'example1.com', 'ROLE_ADMIN');
 INSERT INTO USERS(id, name, password, email, role) VALUES(2, 'B', '$2a$04$oAypge2qHD.Fi61EftOSg.ayMHUDmsufBljz1V8DAsVJsm93Qhieq', 'example2.com', 'ROLE_USER');
 INSERT INTO USERS(id, name, password, email, role) VALUES(3, 'C', '$2a$04$oAypge2qHD.Fi61EftOSg.ayMHUDmsufBljz1V8DAsVJsm93Qhieq', 'example3.com', 'ROLE_USER');
 INSERT INTO USERS(id, name, password, email, role) VALUES(4, 'D', '$2a$04$oAypge2qHD.Fi61EftOSg.ayMHUDmsufBljz1V8DAsVJsm93Qhieq', 'example4.com', 'ROLE_USER');

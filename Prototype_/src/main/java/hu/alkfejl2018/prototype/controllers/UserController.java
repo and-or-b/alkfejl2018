@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +21,7 @@ import hu.alkfejl2018.prototype.entities.User;
 import hu.alkfejl2018.prototype.repositories.CookBookRepository;
 import hu.alkfejl2018.prototype.repositories.RecipeRepository;
 import hu.alkfejl2018.prototype.repositories.UserRepository;
+import hu.alkfejl2018.prototype.security.AuthenticatedUser;
 
 @RestController
 @Secured({ "ROLE_USER" })
@@ -27,21 +29,34 @@ import hu.alkfejl2018.prototype.repositories.UserRepository;
 public class UserController {
 	
 	 @Autowired
-	 private RecipeRepository recipeRepository;
-	
-	 @Autowired
 	 private UserRepository userRepository;
 	 
 	 @Autowired
 	 private CookBookRepository cookBookRepository;
+	
+	 @Autowired
+	 private RecipeRepository recipeRepository;
+
+	 @Autowired
+	 private BCryptPasswordEncoder passwordEncoder;
+	 
+	 @Autowired 
+	 private AuthenticatedUser authenticatedUser;
 	 
 	 @PutMapping("/{user_id}")
 	 public ResponseEntity<User> modifyUser(@PathVariable("user_id") Integer userId, @RequestBody User user) {
-		
+		 
+		 if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
+		 
 		 Optional<User> optionalUser = userRepository.findById(userId);
 		 if (optionalUser.isPresent()) {
-			 user.setId(userId);
 			 
+			 user.setId(userId);
+			 user.setPassword(passwordEncoder.encode(user.getPassword()));
+			 user.setRole(optionalUser.get().getRole());
+
 			 return ResponseEntity.ok(userRepository.save(user));
 		 }
 		 return ResponseEntity.notFound().build();
@@ -49,6 +64,10 @@ public class UserController {
 
 	 @DeleteMapping("/{user_id}")
 	 public ResponseEntity<User> deleteUser(@PathVariable("user_id") Integer userId) {
+		 
+		 if (!authenticatedUser.getUser().getId().equals(userId)) {
+			 return ResponseEntity.badRequest().build();
+		 }
 		 
 		 Optional<User> user = userRepository.findById(userId);
 		 if (user.isPresent()) {
