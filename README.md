@@ -23,12 +23,8 @@ Funkcionális követelmények
 	* szakácskönyv módosítása
 
 * Adminisztrátor: 
-	* bárki fiókjához hozzáférhet, azok tartalmát törölheti, módosíthatja, új tartalmat adhat hozzá 
-	* egy vagy az összes felhasználó törlése
-	* recept törlése szakácskönyvből
-	* egy felhasználóhoz tartozó szakácskönyv(ek) törlése
-				
-	* egy vagy az összes felhasználó, szakácskönyv, recept lekérése
+	* egy vagy az összes felhasználó törlése		
+	* egy vagy az összes felhasználó lekérése
 				
 * Közös: 
 	* bejelentkezés után a funkciók használata 
