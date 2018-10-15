@@ -34,9 +34,9 @@ Nem funkcionális követelmények
 
 * Felhasználóbarát, ergonomikus elrendezés és kinézet. Gyors működés. Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
 
-* Szerepkörök
+Szerepkörök
 
-	* felhasználó: a saját maga által létrehozott fiók, receptek és szakácskönyvek módosítása és törlése
-	* adminisztrátor: felhasználók, szakácskönyvek és receptek törlése, felhasználói fiókokhoz való teljes hozzáférés
+* felhasználó: a saját maga által létrehozott fiók, receptek és szakácskönyvek módosítása és törlése
+* adminisztrátor: felhasználók, szakácskönyvek és receptek törlése, felhasználói fiókokhoz való teljes hozzáférés
 
 ## Backend megvalósítása
