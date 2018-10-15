@@ -52,3 +52,4 @@ Alkalmazott könyvtárstruktúra bemutatása
 Végpont-tervek és leírások
 
 1 db végpont működésének leírása, mi történik, milyen lépések követik egymást (szekvenciadiagram)
+![Screenshot](endpoint.png)
