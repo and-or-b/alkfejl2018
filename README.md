@@ -2,7 +2,7 @@
 ## Projektötlet
 
 ###### FELADAT
-**Egy webes alkalmazás elkészítése, amellyel a bejelentkezett felhasználók receptjeiket szakácskönyvekbe szervezhetik. Saját recepteket és szakácskönyveket hozhatnak létre, módosíthatják és törölhetik azokat. Adminisztrátorként minden felhasználót, szakácskönyvet és receptet törölhetünk, a felhasználói fiókokhoz hozzáférhetünk.**
+**Egy webes alkalmazás elkészítése, amellyel a bejelentkezett felhasználók receptjeiket szakácskönyvekbe szervezhetik. Saját recepteket és szakácskönyveket hozhatnak létre, módosíthatják és törölhetik azokat. Adminisztrátorként a felhasználókat törölhetjük és lekérhetjük.**
 
 Funkcionális követelmények
 
