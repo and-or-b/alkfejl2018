@@ -40,8 +40,14 @@ Szerepkörök
 * adminisztrátor: felhasználók, szakácskönyvek és receptek törlése, felhasználói fiókokhoz való teljes hozzáférés
 
 ## Backend megvalósítása
+
 Fejlesztői környezet bemutatása, beállítása, használt technológiák
+
 Adatbázis-terv: táblák kapcsolati UML diagramja
+![Screenshot](db.jpg)
+
 Alkalmazott könyvtárstruktúra bemutatása
+
 Végpont-tervek és leírások
+
 1 db végpont működésének leírása, mi történik, milyen lépések követik egymást (szekvenciadiagram)
