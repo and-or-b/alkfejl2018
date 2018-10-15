@@ -47,6 +47,7 @@ Adatbázis-terv: táblák kapcsolati UML diagramja
 ![Screenshot](db.jpg)
 
 Alkalmazott könyvtárstruktúra bemutatása
+![Screenshot](folders.bmp)
 
 Végpont-tervek és leírások
 
