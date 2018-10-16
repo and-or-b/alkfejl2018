@@ -76,29 +76,41 @@ hozzáférés: ROLE_ADMIN
 kezdeti végpont: "/admin" -> autentikáció szükséges hozzá
 
 "/getAllUsers"
-	- a userRepository tartalmával tér vissza
-	- miden esetben legalább egy eleme van, az admin
+	- GET:
+		- a userRepository tartalmával tér vissza
+		- miden esetben legalább egy eleme van, az admin
 
 "/getAllUsers/getUserById/{user_id}"
-	- a userRepository megadott user_id-val rendelkező elemével tér vissza
+	- GET:
+		- a userRepository megadott user_id-val rendelkező elemével tér vissza
 
 "/getAllUsers/deleteUserById/{user_id}"
-	- törli a userRepository megadott user_id-val rendelkező elemét 
-	- ha egy felhasználóhoz(user) tartozik szakácskönyv(cookbook), akkor az is törlődik; ha a szakácskönyvhöz recept(recipe)
-	tartozik, akkor a recept is törlődik
+	-DELETE:
+		- törli a userRepository megadott user_id-val rendelkező elemét 
+		- ha egy felhasználóhoz(user) tartozik szakácskönyv(cookbook), akkor az is törlődik; ha a szakácskönyvhöz recept(recipe)
+		tartozik, akkor a recept is törlődik
 
 "/deleteAllUsers"
-	- az adminon kívül mindenkit töröl a userRepository-ból
+	- DELETE: 
+		- az adminon kívül mindenkit töröl a userRepository-ból
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------- 
-Hozzáférés: bárki számára
-Kezdeti végpont: "http://localhost:8080"
-Végpont: "/register
-post metódus, egy user - t vár a végpont, így a name, password, email megadása kötelező, ezeken kívül más nem kell megadni. az email -nek egyedinek kell lennie
-az id és a role generálódik
+LoginAndRegisterController
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Hozzáférés: bárki számára
+
+Kezdeti végpont: ""
+
+"/register"
+	- POST: 
+		- új felhasználó regisztrálása
+		- felhasználót(user) vár, így a name, password, email megadása kötelező
+		- az email-nek egyedinek kell lennie
+		- a password elkódolódik
+		- az id és a role generálódik
+
+----------------------------------------------------------------------------------------------------------------------------------------
 
 UserController
 
@@ -107,17 +119,22 @@ hozzáférés: ROLE_USER
 Kezdeti végpont: /user -> autentikáció szükséges hozzá
 
 "/{user_id}"
-	- user adatainak megváltoztatása. name, emai, password amik megadása kötelező, ha valamelyiket nem akarjuk megváltoztatni, akkor az eredetit értéket kell megadni. a role automatikusan átadódik. a password elhash -e lődik, így figyelni kell arra, hogy NE a hash -el password-ot írjuk be, különben kétszer hash e-lődik. 
-	
-ha nem külde be semmit: Status 400 Unauthorized
+	- PUT:
+		- felhasználó(user) adatainak megváltoztatása
+		- name, password, email megadása kötelező, ha valamelyiket nem akarjuk megváltoztatni, akkor az eredetit értéket kell 
+		megadni
+		- az email-nek egyedinek kell lennie
+		- a password elkódolódik
+		- az id és a role automatikusan átadódnak
+	- DELETE:
+		- adott user_id törli a felhasználót(user) és a hozzá tartozó szakácskönyveket(cookbook), recepteket(recipe) 
+----------------------------------------------------------------------------------------------------------------------------------------
+CookBookController
 
-	@DeleteMapping("/{user_id}")
-	public ResponseEntity<User> deleteUser(@PathVariable("user_id") Integer userId) {
-	A user törli a regisztrációját. Ha a user - hez tartozott cookbook, és/vagy recipe, akkor  azok is törlére kerülnek.
-		 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Hozzáférés: user
-Kezdeti végpont: /user -> autentikáció szükséges hozzá
+hozzáférés: ROLE_USER
+
+Kezdeti végpont: ""/user/{user_id}/cookbooks" -> autentikáció szükséges hozzá
+
 @Secured({ "ROLE_USER" })
 @RequestMapping("/user/{user_id}/cookbooks")
  admin "/user" végponthoz NEM férhet hozzá
@@ -193,7 +210,7 @@ public ResponseEntity<Void> deleteUserByAdmin(@PathVariable("user_id") Integer u
 			- a receptet először eltávolítjuk a szakácskönyvből
 			- a receptetből eltávolítjuk a szakácskönyvet
 			- a recept mentésre kerül recipeRepository-ba
-		- ezután lekérjük ezt a receptet recipe_id alapján a recipeRepository-ból, ha nincs szakácsköny, ami hivatkozna
+		- ezután lekérjük ezt a receptet recipe_id alapján a recipeRepository-ból, ha nincs szakácskönyv, ami hivatkozna
 		rá, akkor recipe_id alapján töröljük recipeRepository-ból
 - ezt addig ismételjük, amíg a felhasználó szakácskönyveiből el nem távolítjuk az összes receptet
 - töröljük az üres szakácsönyveket
