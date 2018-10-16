@@ -152,39 +152,40 @@ Kezdeti végpont: "/user/{user_id}/cookbooks"
 		- ha a szakácskönyvhöz tartozik recept és a recept nem tartozik másik szakácskönyvhöz, akkor véglegesen törlére kerül
 		
 ----------------------------------------------------------------------------------------------------------------------------------------
+RecipeController
 
-Hozzáférés: user
-Kezdeti végpont: "/user/{user_id}/cookbooks/{cook_book_id}/recipes" -> autentikáció szükséges hozzá	
+hozzáférés: ROLE_USER
 
-	@GetMapping("")
-	public ResponseEntity<Iterable<Recipe>> getUserRecipesFromACookBook(@PathVariable("user_id") Integer userId,
-			adott id -val rendelkező felhasnáló adott id - val rendelkező szakácskönyvének össze receptjé adja vissza, ha létezik. 
-			Ha nem "Status: 404 Not Found", ha üres, akkor üresen tér vissza
-	 
-	@PostMapping("")
-	public ResponseEntity<Recipe> newRecipe(@PathVariable("user_id") Integer userId, 
-			@PathVariable("cook_book_id") Integer cookBookId, @RequestBody Recipe recipe)
-	új recept hozzáadása adott szakácskönyvhöz. title és description megadása kötelező. 
+Kezdeti végpont: ""/user/{user_id}/cookbooks/{cook_book_id}/recipes""
 
-	@DeleteMapping("")
-	public ResponseEntity<Recipe> deleteRecipes(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") int cookBookId) {
-	az adott felhasnáló tartozó össze szakácskönyv és a hozzájuk tartozó receptek törlése
+- ""
+	- GET
+		- adott user_id-val rendelkező felhasználó adott cook_book_id-val rendelkező szakácskönyvének össze receptjé adja 
+		vissza
+
+	- POST
+	 	- új recept hozzáadása cook_book_id-val rendelkező szakácskönyvhöz
+		- title és description megadása kötelező.
+
+	- DELETE
+		- a szakácskönyvhöz tartozik receptek törlése 
+		- ha egy recept nem tartozik másik szakácskönyvhöz, akkor véglegesen törlére kerül
+
+- "/{recipe_id}"
+	- DELETE
+		- recipe_id-val rendelkező recept törlése a cook_book_id-val rendelkező szakácskönyvből
+		- ha egy recept nem tartozik másik szakácskönyvhöz, akkor véglegesen törlére kerül 
 	
-	@DeleteMapping("/{recipe_id}")
-	public ResponseEntity<Recipe> deleteRecipe(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") Integer cookBookId, 
-			@PathVariable("recipe_id") Integer recipeId) {
-	adott felhasnálóhoz tartozó adott szakácskönyv adott receptjét törli, ha létezik. 
-	 
-	@PutMapping("/{recipe_id}")
-	public ResponseEntity<Recipe> modifyRecipe(@PathVariable("user_id") Integer userId, @PathVariable("recipe_id") Integer recipeId, 
-	módosítja egy recept címét és/vagy tartalmát. title és description megadása kötelező. amelyiet nem akarjuk módosítani, annak az eredeti értékkel kell megegezni.
+	- PUT
+		- módosítja egy recept címét és/vagy tartalmát
+		- title és description megadása kötelező, amelyiket nem akarjuk módosítani, azt az eredeti értékkel kell megadni
+
 	
-	@PostMapping("/{recipe_id}/addToAnotherCookBook/{other_cook_book_id}")
-	public ResponseEntity<Recipe> addToAnotherCookBook(@PathVariable("user_id") Integer userId, @PathVariable("recipe_id") Integer recipeId, 
-			@PathVariable("other_cook_book_id") Integer otherCookBookId) {
-			
-	az adott receptet hozzávehetjük egy másik szakácskönyvhöz. több szaácskönyvbe, lévő recept csak akkor tölődik véglegesen, ha az utolós olyan szakácskönyvet töröljük,
-	amelyik még tartalmazza
+- {recipe_id}/addToAnotherCookBook/{other_cook_book_id}"
+	- POST
+		- az recipe_id-val rendelkező receptet hozzávehetjük a other_cook_book_id-val rendelkező szakácskönyvhöz
+		- több szakácskönyvbe, lévő recept csak akkor tölődik véglegesen, ha az utolós olyan szakácskönyből is töröljük,
+		amelyik még tartalmazza
 	
 1 db végpont működésének leírása, mi történik, milyen lépések követik egymást (szekvenciadiagram)
 
