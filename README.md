@@ -79,11 +79,18 @@ public ResponseEntity<Void> deleteUserByAdmin(@PathVariable("user_id") Integer u
 	szakácskönyveit(cookbook)
 	- ezek egy listába kerülnek, amin végigiterálva törüljük a user_id és a cookbook_id alapján a felhasználóhoz tartozó
 	szakácsönyveket és azok tartalmát. Ez a következőképpen történik:
-			- kérés érkezik cookBookRepository -hoz, hogy user id-ja és a könyv id - ja alapján adja vissza a cookbook tartalmát, a recipe - ket 
-				- ha van legaább egy, az bekerül egy iterálható tárolóba, amin végigiterálva lekérjük a receptet, a receptet először eltávolítjuk a szakácskönyvből, majd a receptetből eltávolítjuk a szakácskönyvet (manyToMany kapcsolat), a recept mentésre kerül recipeRepository -ba
-			- ezután lekérjük ezt a receptet id alapján recipeRepository-ból, ha nincs szakácsköny, ami hivatkozna rá, akkor id alapján töröljük recipeRepository ból
+			- kérés érkezik cookBookRepository-hoz, hogy user_id-ja és a cookbook_id alapján adja vissza a szakácsköny
+			tartalmát, azaz a recepteket(recipe)
+			- ha van legalább egy, az bekerül egy iterálható tárolóba
+			- végigiterálunk a tároló, menet közben lekérjük a recepteket
+				- a receptet először eltávolítjuk a szakácskönyvből
+				- a receptetből eltávolítjuk a szakácskönyvet
+				- a recept mentésre kerül recipeRepository-ba
+			- ezután lekérjük ezt a receptet recipe_id alapján a recipeRepository-ból, ha nincs szakácsköny, ami hivatkozna
+			rá, akkor recipe_id alapján töröljük recipeRepository-ból
 			- az iteráció végén a már üres szakácskönyvet töröljük
-	 - ezt addig ismételjük, amíg van a felhasználónak szakácskönyve
-	 - végül töröljük a felhasználót is 
+- ezt addig ismételjük, amíg van a felhasználónak szakácskönyve
+- töröljük az üres szakácsönyveket
+- töröljük a felhasználót 
 	
 ![Screenshot](endpoint.png)
