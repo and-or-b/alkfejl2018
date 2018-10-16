@@ -1,10 +1,10 @@
 # alkfejl2018
 ## Projektötlet
 
-###### FELADAT
+### FELADAT
 **Egy webes alkalmazás elkészítése, amellyel a bejelentkezett felhasználók receptjeiket szakácskönyvekbe szervezhetik. Saját recepteket és szakácskönyveket hozhatnak létre, módosíthatják és törölhetik azokat. Adminisztrátorként a felhasználókat törölhetjük és lekérhetjük.**
 
-Funkcionális követelmények
+#### Funkcionális követelmények
 
 * Felhasználó: 
 	* regisztráció
@@ -30,18 +30,18 @@ Funkcionális követelmények
 	* bejelentkezés után a funkciók használata 
 	* ezeket egy előre megadott listából, vagy LDAP - authentikációval kell elvégezni
 
-Nem funkcionális követelmények
+#### Nem funkcionális követelmények
 
 * Felhasználóbarát, ergonomikus elrendezés és kinézet. Gyors működés. Biztonságos működés: jelszavak tárolása, funkciókhoz való hozzáférés.
 
-Szerepkörök
+#### Szerepkörök
 
 * felhasználó: a saját maga által létrehozott fiók, receptek és szakácskönyvek módosítása és törlése
 * adminisztrátor: felhasználók, szakácskönyvek és receptek törlése, felhasználói fiókokhoz való teljes hozzáférés
 
 ## Backend megvalósítása
 
-Fejlesztői környezet bemutatása, beállítása, használt technológiák
+#### Fejlesztői környezet bemutatása, beállítása, használt technológiák
 
 * Eclipse Phonton:
 	* attól függően, hogy milyen nyelven szeretnénk fejleszteni, (Java, C/C++, Javascript, stb.)
@@ -61,13 +61,13 @@ Fejlesztői környezet bemutatása, beállítása, használt technológiák
 * Git/GitHub:
 	* verziókövetéshez
 
-Adatbázis-terv: táblák kapcsolati UML diagramja
+#### Adatbázis-terv: táblák kapcsolati UML diagramja
 ![Screenshot](db.jpg)
 
-Alkalmazott könyvtárstruktúra bemutatása
+#### Alkalmazott könyvtárstruktúra bemutatása
 ![Screenshot](folders.bmp)
 
-Végpont-tervek és leírások
+#### Végpont-tervek és leírások
 
 AdminController:
 
@@ -187,7 +187,7 @@ Kezdeti végpont: ""/user/{user_id}/cookbooks/{cook_book_id}/recipes""
 		- több szakácskönyvbe, lévő recept csak akkor tölődik véglegesen, ha az utolós olyan szakácskönyből is töröljük,
 		amelyik még tartalmazza
 	
-1 db végpont működésének leírása, mi történik, milyen lépések követik egymást (szekvenciadiagram)
+#### 1 db végpont működésének leírása, mi történik, milyen lépések követik egymást (szekvenciadiagram)
 
 /admin/getAllUser/deleteUseById/{user_id}
 
