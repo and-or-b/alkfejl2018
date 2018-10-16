@@ -43,6 +43,24 @@ Szerepkörök
 
 Fejlesztői környezet bemutatása, beállítása, használt technológiák
 
+* Eclipse Phonton
+		* attól függően, hogy milyen nyelven szeretnénk fejleszteni, (Java, C/C++, Javascript, stb.)
+		letölthető a nyelvenek megfelelő integrált fejlesztői környezetet: "Eclipse IDE for Java Developers" 
+		* fejlesztői környezeten belül elérhető az "Eclipse Marketplace", ahonna további eszközök telepíthetőek
+		
+* Spring Boot
+		* Spring Boot használatához: "Spring Tools 3 Add-On (aka Spring Tool Suite 3) 3.9.6 RELEASE"
+		* projekt indítása: jobb klikk a projektre -> "Run as" -> "Spring Boot App"
+		
+* Maven
+		* szoftverprojektek menedzseléséhez
+	
+* Postman						
+		* végpontok kipróbálásához
+							
+* Git/GitHub 
+		* verziókövetéshez
+
 Adatbázis-terv: táblák kapcsolati UML diagramja
 ![Screenshot](db.jpg)
 
