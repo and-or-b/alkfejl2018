@@ -72,6 +72,7 @@ Végpont-tervek és leírások
 1 db végpont működésének leírása, mi történik, milyen lépések követik egymást (szekvenciadiagram)
 
 /admin/getAllUser/deleteUseById/{user_id}
+
 public ResponseEntity<Void> deleteUserByAdmin(@PathVariable("user_id") Integer userId)
 
 - kérés érkezik a userRepository-hoz, hogy a user_id alapján adja vissza a megfelelő felhasználót(user)
