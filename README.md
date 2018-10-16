@@ -69,7 +69,7 @@
 
 #### Végpont-tervek és leírások
 
-AdminController:
+###### AdminController:
 
 hozzáférés: ROLE_ADMIN
 
@@ -93,8 +93,8 @@ kezdeti végpont: "/admin"
 - "/deleteAllUsers"
 	- DELETE: 
 		- az adminon kívül mindenkit töröl a userRepository-ból
----------------------------------------------------------------------------------------------------------------------------------------- 
-LoginAndRegisterController
+
+###### LoginAndRegisterController
 
 Hozzáférés: bárki számára
 
@@ -107,8 +107,8 @@ Kezdeti végpont: ""
 		- az email-nek egyedinek kell lennie
 		- a password elkódolódik
 		- az id és a role generálódik
-----------------------------------------------------------------------------------------------------------------------------------------
-UserController
+
+###### UserController
 
 hozzáférés: ROLE_USER
 
@@ -124,8 +124,8 @@ Kezdeti végpont: "/user"
 		- az id és a role automatikusan átadódnak
 	- DELETE:
 		- adott user_id törli a felhasználót(user) és a hozzá tartozó szakácskönyveket(cookbook), recepteket(recipe)
-----------------------------------------------------------------------------------------------------------------------------------------
-CookBookController
+		
+###### CookBookController
 
 hozzáférés: ROLE_USER
 
@@ -151,8 +151,7 @@ Kezdeti végpont: "/user/{user_id}/cookbooks"
 		- megadott cook_book_id-val rendelkező szakácskönyv törlése 
 		- ha a szakácskönyvhöz tartozik recept és a recept nem tartozik másik szakácskönyvhöz, akkor véglegesen törlére kerül
 		
-----------------------------------------------------------------------------------------------------------------------------------------
-RecipeController
+###### RecipeController
 
 hozzáférés: ROLE_USER
 
