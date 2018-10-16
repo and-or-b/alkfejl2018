@@ -70,65 +70,28 @@ Alkalmazott könyvtárstruktúra bemutatása
 Végpont-tervek és leírások
 
 AdminController:
+
 hozzáférés: ROLE_ADMIN
+
 kezdeti végpont: "/admin" -> autentikáció szükséges hozzá
 
-/getAllUsers
+"/getAllUsers"
 	- a userRepository tartalmával tér vissza
 	- miden esetben legalább egy eleme van, az admin
 
-/getAllUsers/getUserById/{user_id}
+"/getAllUsers/getUserById/{user_id}"
 	- a userRepository megadott user_id-val rendelkező elemével tér vissza
 
-/getAllUsers/deleteUserById/{user_id}
+"/getAllUsers/deleteUserById/{user_id}"
 	- törli a userRepository megadott user_id-val rendelkező elemét 
 	- ha egy felhasználóhoz(user) tartozik szakácskönyv(cookbook), akkor az is törlődik; ha a szakácskönyvhöz recept(recipe)
 	tartozik, akkor a recept is törlődik
 
-/deleteAllUsers
-- az adminon kívül mindenkit töröl a userRepository-ból
-
-CookBookController
-hozzáférés: Role = ROLE_USER
-/user/{user_id}/cookbooks
-
-new CookBook method
-- üres user-rel kell beküldeni, id nélkül, különben az adott id -val rendelkező cookbook felülírásara kerül és 
-
-renameCookBook
-- a title nem lehet üres, minden más opcionális, csak a title kerül átírásara
--  üres és null esetén 404 notfound
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-A végpontok kipróbálása:
-	1. felhasnálónév: admin email címe jelszó: admin
-	2. felhasnálónév: bámelyik, amelyik NEM az admin email cím, jelszó: user
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	AdminController
-Végpont - terv:
-Hozzáférés: admin
-Kezdeti végpont: /admin -> autentikáció szükséges hozzá
+"/deleteAllUsers"
+	- az adminon kívül mindenkit töröl a userRepository-ból
 
 
-	 @GetMapping("/getAllUsers")
-	 public ResponseEntity<Iterable<User>> getAllUsers() {
-		get metódus, visszaadja a userRepository tartalmát, legalább 1 eleme van, az admin
-
-	@GetMapping("/getAllUsers/getUserById/{user_id}")
-	 public ResponseEntity<Optional<User>> getUser(@PathVariable("user_id") Integer userId) {
-		get metódus, visszaadja a user - t a user_id alapján, ha nem létezik a user_id, akkor üressel tér vissza, "Status: 204 No Content"
-
-	 @DeleteMapping("/deleteAllUsers")
-	 public ResponseEntity<Void> deleteAllUsers()
-	 delete metódus, törli a userRepository tartalmát az admin kivételével, ha egy user - hez cookbook is trartozott, az is törlésre kerül, ha az előbb említett cookbook ban volt recipe, az is törlődik. Tehát ez a művelet a userRepository, cookBookRepository és a userRepository tartalmát is kiüríti
-
-
-	 @DeleteMapping("/getAllUsers/deleteUserById/{user_id}")
-	 public ResponseEntity<Void> deleteUserByAdmin(@PathVariable("user_id") Integer userId) {
-	 delete metódus, user_id alapján töröl egy felhasználót és a felhasnálóhoz tartozó cookbook -ok és recipe - ek is törlére kerülnek
-	 ha nem létezik a felhasználó, üressel tér vissza, "Status: 404 Not Found"
-	 ezzel az admin is törölheti magát
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+---------------------------------------------------------------------------------------------------------------------------------------- 
 Hozzáférés: bárki számára
 Kezdeti végpont: "http://localhost:8080"
 Végpont: "/register
@@ -136,17 +99,17 @@ post metódus, egy user - t vár a végpont, így a name, password, email megad�
 az id és a role generálódik
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-nem megfelelően megadott belépési adatok alapján a visszatérési érték: "HTTP Status 401 : Bad credentials", 
-"Status: 401 Unauthorized"
+
 UserController
-Hozzáférés: user
+
+hozzáférés: ROLE_USER
+
 Kezdeti végpont: /user -> autentikáció szükséges hozzá
 
-	@PutMapping("/{user_id}")
-	public ResponseEntity<User> modifyUser(@PathVariable("user_id") Integer userId, @RequestBody User user) {
-	A user adatainek megváltoztatása. name, emai, password amik megadása kötelező, ha valamelyiket nem akarjuk megváltoztatni, akkor az eredetit értéket kell megadni. a role automatikusan átadódik. a password elhash -e lődik, így figyelni kell arra, hogy NE a hash -el password-ot írjuk be, különben kétszer hash e-lődik. 
+"/{user_id}"
+	- user adatainak megváltoztatása. name, emai, password amik megadása kötelező, ha valamelyiket nem akarjuk megváltoztatni, akkor az eredetit értéket kell megadni. a role automatikusan átadódik. a password elhash -e lődik, így figyelni kell arra, hogy NE a hash -el password-ot írjuk be, különben kétszer hash e-lődik. 
 	
-	ha nem külde be semmit: Status 400 Unauthorized
+ha nem külde be semmit: Status 400 Unauthorized
 
 	@DeleteMapping("/{user_id}")
 	public ResponseEntity<User> deleteUser(@PathVariable("user_id") Integer userId) {
