@@ -73,7 +73,7 @@ AdminController:
 
 hozzáférés: ROLE_ADMIN
 
-kezdeti végpont: "/admin" -> autentikáció szükséges hozzá
+kezdeti végpont: "/admin"
 
 - "/getAllUsers"
 	- GET:
@@ -93,8 +93,6 @@ kezdeti végpont: "/admin" -> autentikáció szükséges hozzá
 - "/deleteAllUsers"
 	- DELETE: 
 		- az adminon kívül mindenkit töröl a userRepository-ból
-
-
 ---------------------------------------------------------------------------------------------------------------------------------------- 
 LoginAndRegisterController
 
@@ -109,14 +107,12 @@ Kezdeti végpont: ""
 		- az email-nek egyedinek kell lennie
 		- a password elkódolódik
 		- az id és a role generálódik
-
 ----------------------------------------------------------------------------------------------------------------------------------------
-
 UserController
 
 hozzáférés: ROLE_USER
 
-Kezdeti végpont: /user -> autentikáció szükséges hozzá
+Kezdeti végpont: "/user"
 
 - "/{user_id}"
 	- PUT:
@@ -127,38 +123,36 @@ Kezdeti végpont: /user -> autentikáció szükséges hozzá
 		- a password elkódolódik
 		- az id és a role automatikusan átadódnak
 	- DELETE:
-		- adott user_id törli a felhasználót(user) és a hozzá tartozó szakácskönyveket(cookbook), recepteket(recipe) 
+		- adott user_id törli a felhasználót(user) és a hozzá tartozó szakácskönyveket(cookbook), recepteket(recipe)
 ----------------------------------------------------------------------------------------------------------------------------------------
 CookBookController
 
 hozzáférés: ROLE_USER
 
-Kezdeti végpont: ""/user/{user_id}/cookbooks" -> autentikáció szükséges hozzá
+Kezdeti végpont: "/user/{user_id}/cookbooks"
 
-@Secured({ "ROLE_USER" })
-@RequestMapping("/user/{user_id}/cookbooks")
- admin "/user" végponthoz NEM férhet hozzá
-	 @GetMapping("")
-	 public ResponseEntity<Iterable<CookBook>> getUserCookBooks(@PathVariable("user_id") Integer userId) {
-	 egy user - het tartozó összes szakácskönyv lekérése.  Ha egy nincs szakácskönyv, üresen tér vissza.
+- ""
+	- GET
+		- egy felhasználóhoz(user) tartozó összes szakácskönyv lekérése
 
-	 @PostMapping("")
-	 public ResponseEntity<CookBook> newCookBook(@PathVariable("user_id") Integer userId, @RequestBody CookBook cookBook) {
-		  új szakácskönyv létrehozásához a title megadása szükséges. 
+	- POST
+	 	- új szakácskönyv létrehozásához
+		- a title megadása szükséges
+	- DELETE
+		- a felhasználóhoz tartozó szakácskönyvek törlése
+		- ha a szakácskönyvhöz tartozik recept és a recept nem tartozik másik szakácskönyvhöz, akkor véglegesen törlére kerül
 		
-	@PutMapping("/{cook_book_id}")
-	public ResponseEntity<CookBook> renameCookBook(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") Integer cookBookId, 
-			a szakácskönyv nevének megváltoztatásához a title megadása szükséges. 
+- "/{cook_book_id}"
+	- PUT
+		- szakácskönyv nevének megváltoztatásához
+		- title megadása szükséges
 
-	@DeleteMapping("/{cook_book_id}")
-	public ResponseEntity<CookBook> deleteCookBook(@PathVariable("user_id") Integer userId, @PathVariable("cook_book_id") Integer cookBookId) {
-	megadott id -val rendelkező szakácskönyv törlése. Ha a szakácskönyvhöz tartozik recept és a recept nem tartozik másik szakácskönyvhöz, akkor véglegesen törlére kerül.
+	- DELETE
+		- megadott cook_book_id-val rendelkező szakácskönyv törlése 
+		- ha a szakácskönyvhöz tartozik recept és a recept nem tartozik másik szakácskönyvhöz, akkor véglegesen törlére kerül
+		
+----------------------------------------------------------------------------------------------------------------------------------------
 
-	@DeleteMapping("")
-	public ResponseEntity<CookBook> deleteCookBooks(@PathVariable("user_id") Integer userId) {
-	a felhasnálóhoz tartozó összes szakácskönyv, és a szakácskönyvekhez tartozó össze recept törlére kerül. 
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Hozzáférés: user
 Kezdeti végpont: "/user/{user_id}/cookbooks/{cook_book_id}/recipes" -> autentikáció szükséges hozzá	
 
