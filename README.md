@@ -70,4 +70,20 @@ Alkalmazott könyvtárstruktúra bemutatása
 Végpont-tervek és leírások
 
 1 db végpont működésének leírása, mi történik, milyen lépések követik egymást (szekvenciadiagram)
+
+/admin/getAllUser/deleteUseById/{user_id}
+public ResponseEntity<Void> deleteUserByAdmin(@PathVariable("user_id") Integer userId)
+
+- kérés érkezik a userRepository-hoz, hogy a user_id alapján adja vissza a megfelelő felhasználót(user)
+	- ha a felhasználó létezik, akkor kérés érkezik a cookBookRepository-hoz, hogy adja vissza a felhasználó
+	szakácskönyveit(cookbook)
+	- ezek egy listába kerülnek, amin végigiterálva törüljük a user_id és a cookbook_id alapján a felhasználóhoz tartozó
+	szakácsönyveket és azok tartalmát. Ez a következőképpen történik:
+			- kérés érkezik cookBookRepository -hoz, hogy user id-ja és a könyv id - ja alapján adja vissza a cookbook tartalmát, a recipe - ket 
+				- ha van legaább egy, az bekerül egy iterálható tárolóba, amin végigiterálva lekérjük a receptet, a receptet először eltávolítjuk a szakácskönyvből, majd a receptetből eltávolítjuk a szakácskönyvet (manyToMany kapcsolat), a recept mentésre kerül recipeRepository -ba
+			- ezután lekérjük ezt a receptet id alapján recipeRepository-ból, ha nincs szakácsköny, ami hivatkozna rá, akkor id alapján töröljük recipeRepository ból
+			- az iteráció végén a már üres szakácskönyvet töröljük
+	 - ezt addig ismételjük, amíg van a felhasználónak szakácskönyve
+	 - végül töröljük a felhasználót is 
+	
 ![Screenshot](endpoint.png)
