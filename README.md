@@ -75,22 +75,22 @@ hozzáférés: ROLE_ADMIN
 
 kezdeti végpont: "/admin" -> autentikáció szükséges hozzá
 
-"/getAllUsers"
+- "/getAllUsers"
 	- GET:
 		- a userRepository tartalmával tér vissza
 		- miden esetben legalább egy eleme van, az admin
 
-"/getAllUsers/getUserById/{user_id}"
+- "/getAllUsers/getUserById/{user_id}"
 	- GET:
 		- a userRepository megadott user_id-val rendelkező elemével tér vissza
 
-"/getAllUsers/deleteUserById/{user_id}"
+- "/getAllUsers/deleteUserById/{user_id}"
 	-DELETE:
 		- törli a userRepository megadott user_id-val rendelkező elemét 
 		- ha egy felhasználóhoz(user) tartozik szakácskönyv(cookbook), akkor az is törlődik; ha a szakácskönyvhöz recept(recipe)
 		tartozik, akkor a recept is törlődik
 
-"/deleteAllUsers"
+- "/deleteAllUsers"
 	- DELETE: 
 		- az adminon kívül mindenkit töröl a userRepository-ból
 
@@ -102,7 +102,7 @@ Hozzáférés: bárki számára
 
 Kezdeti végpont: ""
 
-"/register"
+- "/register"
 	- POST: 
 		- új felhasználó regisztrálása
 		- felhasználót(user) vár, így a name, password, email megadása kötelező
@@ -118,7 +118,7 @@ hozzáférés: ROLE_USER
 
 Kezdeti végpont: /user -> autentikáció szükséges hozzá
 
-"/{user_id}"
+- "/{user_id}"
 	- PUT:
 		- felhasználó(user) adatainak megváltoztatása
 		- name, password, email megadása kötelező, ha valamelyiket nem akarjuk megváltoztatni, akkor az eredetit értéket kell 
